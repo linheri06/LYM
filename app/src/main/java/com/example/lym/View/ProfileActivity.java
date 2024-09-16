@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,6 +59,8 @@ public class ProfileActivity extends AppCompatActivity {
     Button btnDeleteUser;
     Button btnLogout;
     FirebaseAuth mAuthencation;
+
+    ImageButton ibBackTakePhoto;
     private static final int PICK_IMAGE_REQUEST=1;
     private static final int REQUEST_CODE_READ_STORAGE=0;
 
@@ -95,6 +98,16 @@ public class ProfileActivity extends AppCompatActivity {
         btnLogout = (Button) findViewById(R.id.btnLogout);
         tvOverview = (TextView) findViewById(R.id.tvOverview);
         tvDangerous = (TextView) findViewById(R.id.tvDangerous);
+        ibBackTakePhoto = (ImageButton) findViewById(R.id.ibBackTakePhotoPro);
+
+        ibBackTakePhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToAvtivity(TakePhotoActivity.class);
+            }
+        });
+
+
         btnListFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

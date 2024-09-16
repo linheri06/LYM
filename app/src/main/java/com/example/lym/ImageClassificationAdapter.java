@@ -27,11 +27,13 @@
         Context context;
         FirebaseAuth firebaseAuth;
         ArrayList<Image> imagelist;
+        private OnItemClickListener listener;
 
 
-        public ImageClassificationAdapter(Context context, ArrayList<Image> imagelist) {
+        public ImageClassificationAdapter(Context context, ArrayList<Image> imagelist, OnItemClickListener listener) {
             this.context = context;
             this.imagelist = imagelist;
+            this.listener = listener;
         }
 
         @NonNull
@@ -70,6 +72,11 @@
         public int getItemCount() {
             return imagelist.size();
         }
+        //khai bao su kien lang nghe cick anh
+        public interface OnItemClickListener {
+            void onItemClick(String url);
+        }
+
 
         public class ViewHolder extends RecyclerView.ViewHolder{
             ImageView imageviewclassification;
@@ -77,6 +84,16 @@
             public ViewHolder(@NonNull View itemView) {
                 super(itemView);
                 imageviewclassification = itemView.findViewById(R.id.imageviewclassification);
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            // Lấy ID của ảnh từ position và chuyển nó qua interface
+                            listener.onItemClick(imagelist.get(position).url);
+                        }
+                    }
+                });
             }
         }
     }

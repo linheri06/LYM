@@ -1,5 +1,6 @@
 package com.example.lym;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,13 @@ import java.util.List;
 
 public class Adapter_friend extends RecyclerView.Adapter<Adapter_friend.friendViewHolder> {
 
+    Context context;
     List<User> mylist;
+
+    public Adapter_friend(Context context, List<User> mylist) {
+        this.context = context;
+        this.mylist = mylist;
+    }
 
     public void setList(List<User> mList) {
         this.mylist = mList;
@@ -34,8 +41,8 @@ public class Adapter_friend extends RecyclerView.Adapter<Adapter_friend.friendVi
         if (mylist != null) {
             User tmpUser = mylist.get(position);
             holder.tv_name.setText(tmpUser.name);
-            Picasso.get().load(tmpUser.avatar).into(holder.imageview);
             holder.imageview.setImageResource(R.drawable.baseline_dangerous_24);
+            Picasso.get().load(tmpUser.avatar).into(holder.imageview);
         }
     }
     @Override

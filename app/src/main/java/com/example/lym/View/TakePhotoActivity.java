@@ -80,30 +80,15 @@ public class TakePhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_take_photo);
         mAuthencation = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = mAuthencation.getCurrentUser();
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users").child(firebaseUser.getUid());
 
-        Log.d("UserCount", firebaseUser.getUid());
+        //Log.d("UserCount", firebaseUser.getUid());
 
         ibProfileTakePhoto = (ImageButton) findViewById(R.id.ibProfileTakePhoto);
-        DatabaseReference avatarUrlRef = usersRef.child("avatar");
-        Log.d("UserCount","aaaa1");
-        avatarUrlRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String avatarUrl = snapshot.getValue(String.class);
-                Log.d("UserCount", avatarUrl);
-                Picasso.get().load(avatarUrl).into(ibProfileTakePhoto);
-                ibProfileTakePhoto.setClipToOutline(true);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Xử lý khi có lỗi xảy ra
-            }
-        });
+            setAvataCurrent(firebaseUser);
         ibTakePhoto = (ImageButton) findViewById(R.id.ibTakePhoto);
         ibChangeCamera = (ImageButton) findViewById(R.id.ibChangeCamera);
         tvListFriendTakePhoto = (TextView) findViewById(R.id.tvListFriendTakePhoto);
-        setTvListFriendTakePhoto(firebaseUser);
+            setTvListFriendTakePhoto(firebaseUser);
         ibImageList = (ImageButton) findViewById(R.id.ibImageList);
 
         pvCamera = (PreviewView) findViewById(R.id.pvCamera);
@@ -151,15 +136,32 @@ public class TakePhotoActivity extends AppCompatActivity {
         });
     }
 
-    private void setTvListFriendTakePhoto( FirebaseUser firebaseUser) {
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("friends").child(firebaseUser.getUid());
-        Log.d("UserCount","aaaa12");
-        usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    private void setAvataCurrent(FirebaseUser firebaseUser) {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users").child(firebaseUser.getUid());
+        DatabaseReference avatarUrlRef = usersRef.child("avatar");
+        //Log.d("UserCount","aaaa1");
+        avatarUrlRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("UserCount","aaaa2");
+                String avatarUrl = snapshot.getValue(String.class);
+                Log.d("UserCount", avatarUrl);
+                Picasso.get().load(avatarUrl).into(ibProfileTakePhoto);
+                ibProfileTakePhoto.setClipToOutline(true);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Xử lý khi có lỗi xảy ra
+            }
+        });
+    }
+
+    private void setTvListFriendTakePhoto( FirebaseUser firebaseUser) {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("friends").child(firebaseUser.getUid());
+        //Log.d("UserCount","aaaa12");
+        usersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int nodeCount = (int) snapshot.getChildrenCount();
-                Log.d("UserCount","aaaa22");
                 tvListFriendTakePhoto.setText(String.valueOf(nodeCount)+ " người bạn");
                 // Do something with nodeCount (e.g., update UI)
             }

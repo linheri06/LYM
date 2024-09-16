@@ -9,7 +9,7 @@
     android:backgroundTint="#FFE6E6"
     tools:context=".View.AddDeleteFriend">
 
-    <Button
+    <ImageButton
         android:id="@+id/btnComeBack"
         android:layout_width="67dp"
         android:layout_height="68dp"
@@ -56,20 +56,33 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.145" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnSearch"
-        android:layout_width="69dp"
-        android:layout_height="60dp"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
-        android:text="Thêm"
-        android:textColor="#090909"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/round_white"
+        android:contentDescription="Delete"
+        android:src="@drawable/baseline_saved_search_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintVertical_bias="0.147" />
+
+    <ImageButton
+        android:id="@+id/ibBackTakePhoto"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/round_white"
+        android:contentDescription="Delete"
+        android:src="@drawable/baseline_camera_alt_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.004" />
 
     <TextView
         android:id="@+id/tvFriedList"
@@ -96,8 +109,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFriedList"
+        app:layout_constraintVertical_bias="0.972" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

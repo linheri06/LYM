@@ -6,13 +6,11 @@ plugins {
 android {
     namespace 'com.example.lym'
     compileSdk 34
-    compileSdkVersion 34
-    buildToolsVersion "34.0.0"
 
-           defaultConfig {
-                applicationId "com.example.lym"
-                 minSdk 28
-                 targetSdk 34
+    defaultConfig {
+        applicationId "com.example.lym"
+        minSdk 30
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -56,8 +54,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation 'com.squareup.picasso:picasso:2.8'
 
-<<<<<<< HEAD
+
     implementation("com.google.firebase:firebase-storage")
-=======
->>>>>>> 5a3023f23fefd13e1b5c17d89a3435f1c92f516e
+
 }

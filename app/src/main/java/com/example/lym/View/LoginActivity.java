@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnSignup;
 
-    TextView tVForgotPw;
 
     EditText eTUsername;
 
@@ -31,18 +30,18 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
 
 
-    private void Login(){
+    private void Login() {
         String Username = eTUsername.getText().toString();
         String PW = eTPW.getText().toString();
-        mAuth.signInWithEmailAndPassword(Username,PW)
+        mAuth.signInWithEmailAndPassword(Username, PW)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                             Intent myintent = new Intent(LoginActivity.this, TakePhotoActivity.class);
                             startActivity(myintent);
-                        }else {
+                        } else {
                             Toast.makeText(LoginActivity.this, "Lỗi!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -61,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
         tLogin = (TextView) findViewById(R.id.tLogin);
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnSignup = (Button) findViewById(R.id.btnSignup);
-        tVForgotPw = (TextView) findViewById(R.id.tVForgotPw);
         eTUsername = (EditText) findViewById(R.id.eTUsername);
         eTPW = (EditText) findViewById(R.id.eTPW);
 
@@ -80,15 +78,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent myintent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(myintent);
-            }
-        });
-
-        tVForgotPw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myintent = new Intent(LoginActivity.this, ChangePasswordActivity.class);
-                startActivity(myintent);
-
             }
         });
 

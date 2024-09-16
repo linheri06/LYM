@@ -29,11 +29,11 @@ public class Image {
         this.cap = cap;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.date = date;
     }
 }
